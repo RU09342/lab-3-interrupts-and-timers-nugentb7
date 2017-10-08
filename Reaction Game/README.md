@@ -1,15 +1,17 @@
-# (Optional) Reaction Game
-On to the sort of optional part of the lab. I only say "sort of" because I really think that you should try to implement a game just to not only have a little fun with the class, but also start thinking about what behaviors you want your system to exhibit. Below are only a few recommendations I can think of, but if you want, please show me your creative side and think of another game to implement.
+# Twenty Presses
+# Use the MSP430FR6989 to play this quick, competitive game!
+## Explanation
+This game is played by two players who use the on-board pushbuttons to increase their score. The start of the game is indicated by three LED blinks followed by the holding of the LED's in the
+high state.
 
-## Task
-The final part of this lab is to generate a game using buttons, timers, and LEDS that is meant to be played with let's say 2+ players. Your game does not have to be complicated, however, I think it would be kind of cool as people start making these games that we can test them out in lab. Along with some awesome documentation to explain how to play your game, you need to also demonstrate to your Professor and/or the Lab Instructor that your game actually works to get credit for this part of the lab. The reason we want to see it in person is A) so we can bask in the glory that is your game, and B) so we can get a good look at the game and see what you have implemented from the lab exercises so far. This is not meant to be a "Grill session" where we rake you over the coals about every single line of code, but we are probably going to ask a few questions just to get an idea for the different ways people are implementing these game ideas.
+Thereafter, each button press will increment the player's score until one player reaches 20. The player who reaches 20 first will win, with the winner indicated by his or her LED blinking repeatedly. The loser's LED will be turned off until the game is reset.
 
-## "But what processor should I be doing this on?"
-Since this is technically an optional part of the lab, we are not going to force you into picking just one processor or make you do it for them all. What I personally would love to see is people using boards like the FR6989 or F5529 and take advantage of a ton of I/O to maybe do something interesting with LED displays or multiple inputs.
+The game includes reset capability, with either button being pressed restarting the game. The players will then, again, wait until the LEDS blink three times and hold before pressing the buttons.
 
-### Game Ideas
-#### Reaction
-This would be a 2 player game where your two players after resetting the processor press their buttons to initialize the game. After at least 5 seconds, one of the LEDs should turn on and your processor then has to determine who was the first person to press the button. The winner could be indicated by blinking particular LEDs. Once you get the core functionality working, you should also add false start protection so players who press the button too early are automatically disqualified.
+## Algorithm
+The TimerA interrupt is used to begin/reset the game, as well as indicate the end of the game. Using a counter, the LEDs are toggled each time the counter reaches a multiple of 25, using the modulus operator.
+Until the counter reaches 200, the LEDs are toggled. Once the counter reaches 200, the LEDS are held high, indicating the players may begin playing the game.
 
-#### Rapid Pressing
-The object of this 2 player game would be to see who can press their button the fastest up to an arbitrary number of times, for example 50 times. Upon your processor starting up, each player should hold their button down to indicate the start of the game. From that point the LEDs could blink 3 times and after that, both players begin pressing the buttons as fast as possible. First player to the number of button presses wins and can be indicated by flashing LEDs. Remember! Since you are counting the number of times a button is pressed, you need to make sure that you are debouncing properly to ensure there is no inadvertent cheating.
+Once the game begins, the PORT1 interrupt is used upon each button press. If the player who pressed the button has a score less than 20, the player's score is incremented. Once a score reaches 20, the reset variable is set high.
+
+This indicates that the game is over, within the TimerA interrupt. Then, the LED of the winner is toggled and the LED of the loser is turned off. This continues until one of the buttons is pressed, resetting the game.
