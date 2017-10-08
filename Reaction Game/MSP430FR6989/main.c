@@ -63,7 +63,7 @@ __interrupt void PORT_1(void)
 
     if (!(P1IN & BIT1) && reset == 1)
     {
-        if (playerAscore < 10) //as long as the score is less than 10, increment
+        if (playerAscore < 20) //as long as the score is less than 10, increment
         {
             playerAscore++;
             P1OUT ^= BIT0;
@@ -82,7 +82,7 @@ __interrupt void PORT_1(void)
     if (!(P1IN & BIT2) && reset ==1 )
     {
 
-        if (playerBscore < 10)
+        if (playerBscore < 20)
         {
             playerBscore++; //increment score
             P9OUT ^= BIT7; //toggle LED to indicate button press
