@@ -25,26 +25,26 @@ void timerstart(int f);
 
 int main(void)
 {
-	WDTCTL = WDTPW | WDTHOLD;	// stop watchdog timer
-	PM5CTL0 &= ~LOCKLPM5;           // Disable the GPIO power-on default high-impedance mode
+    WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
+    PM5CTL0 &= ~LOCKLPM5;           // Disable the GPIO power-on default high-impedance mode
 
-	P1DIR |=BIT0; //set Port 1.0 output --LED
-	P9DIR |=BIT7; //set Port 9.7 output --LED
-	P1OUT &= ~BIT0;
-	P9OUT &= ~BIT7;
-	P1DIR &=~(BIT1|BIT2); //set Port 1.1/1.2 input --- pushbutton
-	P1REN|=(BIT1|BIT2);//enable pull-up resistor on buttons
-	P1OUT|=(BIT1|BIT2); //set as pullup resistors
-	P1IE |=(BIT1|BIT2);//enable the interrupt on P1.1 and P1.2
-	P1IES |= (BIT1|BIT2);//set as falling edge
-	P1IFG &=~(BIT1|BIT2);//clear interrupt flag
-	
-	timerstart(100);    //initialize 100Hz clock
+    P1DIR |=BIT0; //set Port 1.0 output --LED
+    P9DIR |=BIT7; //set Port 9.7 output --LED
+    P1OUT &= ~BIT0;
+    P9OUT &= ~BIT7;
+    P1DIR &=~(BIT1|BIT2); //set Port 1.1/1.2 input --- pushbutton
+    P1REN|=(BIT1|BIT2);//enable pull-up resistor on buttons
+    P1OUT|=(BIT1|BIT2); //set as pullup resistors
+    P1IE |=(BIT1|BIT2);//enable the interrupt on P1.1 and P1.2
+    P1IES |= (BIT1|BIT2);//set as falling edge
+    P1IFG &=~(BIT1|BIT2);//clear interrupt flag
 
-	__enable_interrupt();
+    timerstart(100);    //initialize 100Hz clock
 
-	while (1)
-	{}
+    __enable_interrupt();
+
+    while (1)
+    {}
 }
 
 void timerstart(int f) // call function with desired frequency to initialize timer module

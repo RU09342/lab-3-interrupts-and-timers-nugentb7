@@ -1,7 +1,7 @@
 ******************************************************************************
                   MSP430 Linker PC v17.6.0                     
 ******************************************************************************
->> Linked Sat Oct  7 15:54:07 2017
+>> Linked Mon Oct  9 13:43:49 2017
 
 OUTPUT FILE NAME:   <timerABlink6989.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs_noexit_mpu"  address: 00004400
@@ -79,7 +79,7 @@ MEMORY CONFIGURATION
   INT53                 0000fffa   00000002  00000002  00000000  RWIX
   INT54                 0000fffc   00000002  00000002  00000000  RWIX
   RESET                 0000fffe   00000002  00000002  00000000  RWIX
-  FRAM2                 00010000   00014000  000002c8  00013d38  RWIX
+  FRAM2                 00010000   00014000  000002ba  00013d46  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -237,30 +237,30 @@ SYSNMI     0    0000fffc    00000002
 .reset     0    0000fffe    00000002     
                   0000fffe    00000002     rts430x_lc_rd_eabi.lib : boot.obj (.reset)
 
-.text      0    00010000    000002c8     
+.text      0    00010000    000002ba     
                   00010000    00000082     rts430x_lc_rd_eabi.lib : autoinit_wdt.obj (.text:_auto_init_hold_wdt)
                   00010082    00000078                            : copy_decompress_lzss.obj (.text:decompress:lzss:__TI_decompress_lzss)
                   000100fa    00000066                            : cpy_tbl.obj (.text:copy_in)
                   00010160    00000058                            : div32u.obj (.text)
                   000101b8    00000040                            : div32s.obj (.text)
-                  000101f8    00000032     main.obj (.text:main)
-                  0001022a    0000002c     MSPMPU_INIT_LIB_CCS_msp430_large_code_restricted_data.lib : mpu_init.o (.text:__mpu_init)
-                  00010256    00000028     main.obj (.text:timerstart)
-                  0001027e    00000018     rts430x_lc_rd_eabi.lib : mult16_f5hw.obj (.text)
-                  00010296    00000014                            : memcpy.obj (.text:memcpy)
-                  000102aa    00000012                            : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
-                  000102bc    00000006                            : exit.obj (.text:abort)
-                  000102c2    00000004                            : pre_init.obj (.text:_system_pre_init)
-                  000102c6    00000002                            : startup.obj (.text:_system_post_cinit)
+                  000101f8    0000002c     MSPMPU_INIT_LIB_CCS_msp430_large_code_restricted_data.lib : mpu_init.o (.text:__mpu_init)
+                  00010224    00000028     main.obj (.text:timerstart)
+                  0001024c    00000024     main.obj (.text:main)
+                  00010270    00000018     rts430x_lc_rd_eabi.lib : mult16_f5hw.obj (.text)
+                  00010288    00000014                            : memcpy.obj (.text:memcpy)
+                  0001029c    00000012                            : copy_decompress_none.obj (.text:decompress:none:__TI_decompress_none)
+                  000102ae    00000006                            : exit.obj (.text:abort)
+                  000102b4    00000004                            : pre_init.obj (.text:_system_pre_init)
+                  000102b8    00000002                            : startup.obj (.text:_system_post_cinit)
 
 MODULE SUMMARY
 
        Module                     code   ro data   rw data
        ------                     ----   -------   -------
     .\
-       main.obj                   114    2         2      
+       main.obj                   100    2         2      
     +--+--------------------------+------+---------+---------+
-       Total:                     114    2         2      
+       Total:                     100    2         2      
                                                           
     C:\ti\ccsv7\ccs_base\msp430\lib\FR59xx\MSPMPU_INIT_LIB_CCS_msp430_large_code_restricted_data.lib
        mpu_init.o                 44     0         0      
@@ -315,7 +315,7 @@ MODULE SUMMARY
        Stack:                     0      0         160    
        Linker Generated:          0      22        0      
     +--+--------------------------+------+---------+---------+
-       Grand Total:               774    80        162    
+       Grand Total:               760    80        162    
 
 
 LINKER GENERATED COPY TABLES
@@ -592,7 +592,7 @@ address   name
 000009ce  AESAXIN_L                 
 000004be  BCD2BIN                   
 000004bc  BIN2BCD                   
-000102bc  C$$EXIT                   
+000102ae  C$$EXIT                   
 0000043e  CAPTIO0CTL                
 0000043f  CAPTIO0CTL_H              
 0000043e  CAPTIO0CTL_L              
@@ -1743,7 +1743,7 @@ UNDEFED   __TI_INITARRAY_Base
 UNDEFED   __TI_INITARRAY_Limit      
 00004436  __TI_ISR_TRAP             
 00010082  __TI_decompress_lzss      
-000102aa  __TI_decompress_none      
+0001029c  __TI_decompress_none      
 0000ffc6  __TI_int27                
 0000ffc8  __TI_int28                
 0000ffca  __TI_int29                
@@ -1777,32 +1777,32 @@ ffffffff  __TI_prof_data_size
 ffffffff  __TI_prof_data_start      
 ffffffff  __c_args__                
 00000001  __mpu_enable              
-0001022a  __mpu_init                
+000101f8  __mpu_init                
 000101b8  __mspabi_divli            
 00010160  __mspabi_divul            
-0001027e  __mspabi_mpyi_f5hw        
+00010270  __mspabi_mpyi_f5hw        
 000101b8  __mspabi_remli            
 00010160  __mspabi_remul            
 00010000  _auto_init_hold_wdt       
 00004400  _c_int00_noargs_noexit_mpu
 0000fffe  _reset_vector             
 00002360  _stack                    
-000102c6  _system_post_cinit        
-000102c2  _system_pre_init          
-000102bc  abort                     
+000102b8  _system_post_cinit        
+000102b4  _system_pre_init          
+000102ae  abort                     
 000100fa  copy_in                   
 00001c00  count                     
 00004400  fram_ipe_end              
 00004400  fram_ipe_start            
 00004400  fram_rw_start             
 00004400  fram_rx_start             
-000101f8  main                      
-00010296  memcpy                    
+0001024c  main                      
+00010288  memcpy                    
 0000a501  mpu_ctl0_value            
 00001513  mpu_sam_value             
 00000440  mpu_segment_border1       
 00000440  mpu_segment_border2       
-00010256  timerstart                
+00010224  timerstart                
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -3259,16 +3259,16 @@ address   name
 00010160  __mspabi_remul            
 000101b8  __mspabi_divli            
 000101b8  __mspabi_remli            
-000101f8  main                      
-0001022a  __mpu_init                
-00010256  timerstart                
-0001027e  __mspabi_mpyi_f5hw        
-00010296  memcpy                    
-000102aa  __TI_decompress_none      
-000102bc  C$$EXIT                   
-000102bc  abort                     
-000102c2  _system_pre_init          
-000102c6  _system_post_cinit        
+000101f8  __mpu_init                
+00010224  timerstart                
+0001024c  main                      
+00010270  __mspabi_mpyi_f5hw        
+00010288  memcpy                    
+0001029c  __TI_decompress_none      
+000102ae  C$$EXIT                   
+000102ae  abort                     
+000102b4  _system_pre_init          
+000102b8  _system_post_cinit        
 ffffffff  __TI_pprof_out_hndl       
 ffffffff  __TI_prof_data_size       
 ffffffff  __TI_prof_data_start      

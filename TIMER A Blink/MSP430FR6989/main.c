@@ -23,7 +23,7 @@ int main(void)
 
     __enable_interrupt();
 
-    __bis_SR_register(LPM0 + GIE); // enable interrupts in LPM0
+   __bis_SR_register(LPM0 + GIE); // enable interrupts in LPM0
 
 }
 

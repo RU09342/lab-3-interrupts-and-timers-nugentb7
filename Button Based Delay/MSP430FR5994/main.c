@@ -84,6 +84,6 @@ __interrupt void PORT_5(void)
     enabled = 1;//enable will be set when button is pressed and reset when it's released in the TIMERA interrupt
     i = 0; //reset our timing counter
     buttonPressed = 1; //state that the button is pressed
-    __delay_cycles(50000); // prevent bouncing from interfering
+    __delay_cycles(100000); // prevent bouncing from interfering
     P5IFG &=~(BIT6);    //clear interrupt flag
 }
