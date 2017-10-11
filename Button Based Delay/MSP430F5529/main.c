@@ -10,7 +10,7 @@ Brendan Nugent
 unsigned int buttonPressed;
 unsigned int enabled = 0x00;
 unsigned int count = 0;
-unsigned int i = 0;
+unsigned int i = 1;
 
 void timerstart(int f);
 
@@ -31,7 +31,7 @@ int main(void)
     P1IFG &=~(BIT1);//clear interrupt flag
 
 
-    timerstart(10);    // initialize timer to 10Hz
+    timerstart(20);    // initialize timer to 10Hz
 
     __enable_interrupt();
 
@@ -44,8 +44,8 @@ void timerstart(int f) // call function with desired frequency to initialize tim
     int n;
     TA0CCTL0 = CCIE; //Enable interrupt in compare mode
     TA0CTL = TASSEL_2 + MC_1 + ID_2; //SMCLK, up mode
-    n = 250000 / f; //250000 / 10 = 25000
-    TA0CCR0 = n; // [( 10^6 / 4) / (25000) = 10Hz)]
+    n = 250000 / f; //250000 / 10 = 12500
+    TA0CCR0 = n; // [( 10^6 / 4) / (12500) = 20Hz)]
 }
 
 
